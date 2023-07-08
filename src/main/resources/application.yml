@@ -1,0 +1,44 @@
+app:
+  id: @project.artifactId@
+  version: @project.version@
+
+spring:
+  h2:
+    console:
+      enabled: true
+  security:
+    oauth2:
+      client:
+        registration:
+          itsme:
+            clientId: kUjbXYtCZm
+            provider: itsme
+            requestUri: https://cetelem-acc.alphacredit.cegeka.com:443
+            redirecturi: '{baseUrl}/login/oauth2/code/{registrationId}'
+            authorizationGrantType: authorization_code
+            scope: service:CETELEMTST_LOGIN,openid,profile,email,address,phone,eid
+        provider:
+          itsme:
+            authorizationUri: https://e2emerchant.itsme.be/oidc/authorization
+            tokenUri: https://e2emerchant.itsme.be/oidc/token
+            userInfoUri: https://e2emerchant.itsme.be/oidc/userinfo
+            jwkSetUri: https://e2emerchant.itsme.be/oidc/jwkSet
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: admin
+    password: admin
+    url: jdbc:h2:mem:userdb
+  jpa:
+    generate-ddl: true
+
+logging:
+  file:
+    name: logs/IdentifyMeProxy.log
+    path: logs
+  level:
+    com.bnp: DEBUG
+    org.springframework: DEBUG
+server:
+  netty:
+    max-keep-alive-requests:

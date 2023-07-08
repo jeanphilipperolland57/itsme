@@ -1,0 +1,93 @@
+app:
+  id: @project.artifactId@
+  version: @project.version@
+kafka:
+  producers:
+    - topic: AP26136B311-PFBEL-GRANTING-ERRORTOPIC-DEV
+      kafka-broker-bootstrap-servers:
+        url: s01vl9947791.xpf.net.intra:9092,S01VL9947794.xpf.net.intra:9092
+        ssl:
+          trust-store-location: /data/springboot/app/IdentifyMeProxy-tst/IdentifyMeProxy-tst/store/DEV-TRUSTSTORE
+          key-store-location: /data/springboot/app/IdentifyMeProxy-tst/IdentifyMeProxy-tst/store/DEV-KEYSTORE
+          trust-store-password: truststorePass1!
+          key-store-password: keystorePass1!
+          key-password: keyPass1!
+      schema-registry:
+        url: https://S01VL9947790.xpf.net.intra:8081
+        ssl:
+          trust-store-location: /data/springboot/app/IdentifyMeProxy-tst/IdentifyMeProxy-tst/store/DEV-TRUSTSTORE
+          key-store-location: /data/springboot/app/IdentifyMeProxy-tst/IdentifyMeProxy-tst/store/DEV-KEYSTORE
+          trust-store-password: truststorePass1!
+          key-store-password: keystorePass1!
+          key-password: keyPass1!
+    - topic: AP26136B314-PFBEL-GRANTING-CUSTOMERIDENTIFICATIONidentify-meTOPIC-DEV
+      kafka-broker-bootstrap-servers:
+        url: s01vl9947791.xpf.net.intra:9092,S01VL9947794.xpf.net.intra:9092
+        ssl:
+          trust-store-location: /data/springboot/app/IdentifyMeProxy-tst/IdentifyMeProxy-tst/store/DEV-TRUSTSTORE
+          key-store-location: /data/springboot/app/IdentifyMeProxy-tst/IdentifyMeProxy-tst/store/DEV-KEYSTORE
+          trust-store-password: truststorePass1!
+          key-store-password: keystorePass1!
+          key-password: keyPass1!
+      schema-registry:
+        url: https://S01VL9947790.xpf.net.intra:8081
+        ssl:
+          trust-store-location: /data/springboot/app/IdentifyMeProxy-tst/IdentifyMeProxy-tst/store/DEV-TRUSTSTORE
+          key-store-location: /data/springboot/app/IdentifyMeProxy-tst/IdentifyMeProxy-tst/store/DEV-KEYSTORE
+          trust-store-password: truststorePass1!
+          key-store-password: keystorePass1!
+          key-password: keyPass1!
+  consumers:
+    - topic: AP26136B310-PFBEL-GRANTING-CUSTOMERSANCTIONPEPidentify-meTOPIC-DEV
+      consumer-group: AP26136B314-PFBEL-GRANTING-APICONSUMERGROUP-DEV
+      kafka-broker-bootstrap-servers:
+        url: s01vl9947791.xpf.net.intra:9092,S01VL9947794.xpf.net.intra:9092
+        ssl:
+          trust-store-location: /data/springboot/app/IdentifyMeProxy-tst/IdentifyMeProxy-tst/store/DEV-TRUSTSTORE
+          key-store-location: /data/springboot/app/IdentifyMeProxy-tst/IdentifyMeProxy-tst/store/DEV-KEYSTORE
+          trust-store-password: truststorePass1!
+          key-store-password: keystorePass1!
+          key-password: keyPass1!
+      schema-registry:
+        url: https://S01VL9947790.xpf.net.intra:8081
+        ssl:
+          trust-store-location: /data/springboot/app/IdentifyMeProxy-tst/IdentifyMeProxy-tst/store/DEV-TRUSTSTORE
+          key-store-location: /data/springboot/app/IdentifyMeProxy-tst/IdentifyMeProxy-tst/store/DEV-KEYSTORE
+          trust-store-password: truststorePass1!
+          key-store-password: keystorePass1!
+          key-password: keyPass1!
+
+elasticsearch:
+  reserved-keywords: ALL,AND,ANY,AS,BETWEEN,BY,CAST,CATALOG,CURRENT_DATE,CURRENT_TIMESTAMP,CURRENT_TIME,DAY,DAYS,DESC,DESCRIBE,DISTINCT,ESCAPE,EXISTS,EXPLAIN,EXTRACT,FALSE,FIRST,FROM,FULL,GROUP,HAVING,HOUR,HOURS,IN,INTERVAL,IS,JOIN,LEFT,LIKE,LIMIT,MATCH,MINUTE,MINUTES,MONTH,MONTHS,NATURAL,NOT,NULL,NULLS,ON,OR,ORDER,OUTER,RIGHT,RLIKE,QUERY,SECOND,SECONDS,SELECT,SESSION,TABLE,TABLES,THEN,TO,TOP,TRUE,TYPE,USING,WHEN,WHERE,WITH,YEAR,YEARS
+  password: tNL51lvGi_2AYi9bxYp8
+  username: elastic
+  node1:
+    host: pfbsrvnp130
+    port: 9200
+    protocol: https
+
+identify-me:
+  baseUrl: https://acrsrvnp234.alphacredit.acgroup:8065/fr/identify-me/v2/ScanListService.svc
+  isoauth: true
+
+oauth:
+  grantType: client_credentials
+  scope: resource.READ,resource.WRITE
+  clientId: 6ec4a93e-869f-49b2-9bcd-93e5e38e07f0
+  clientSecret: ada328d8-0185-4bfc-9660-0608454ea926
+  url: https://acrsrvnp234.alphacredit.acgroup:9099/api/oauth/token
+
+request:
+  validity: P1M #ISO-8601, Means 1 month
+
+server:
+  port: 14002
+
+logging:
+  file:
+    name: ../logs/IdentifyMeProxy.log
+    path: logs
+  level:
+    com.bnp: DEBUG
+    org.apache.cxf.services.IScanListService.REQ_OUT: INFO
+    org.apache.cxf.services.IScanListService.REQ_IN: INFO
