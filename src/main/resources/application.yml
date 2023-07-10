@@ -14,9 +14,9 @@ spring:
             clientId: kUjbXYtCZm
             provider: itsme
             requestUri: https://cetelem-acc.alphacredit.cegeka.com:443
-            redirecturi: '{baseUrl}/login/oauth2/code/{registrationId}'
+            redirecturi: '{baseUrl}/result'
             authorizationGrantType: authorization_code
-            scope: service:CETELEMTST_LOGIN,openid,profile,email,address,phone,eid
+            scope: service:CETELEMTST_LOGIN,openid,profile
         provider:
           itsme:
             authorizationUri: https://e2emerchant.itsme.be/oidc/authorization

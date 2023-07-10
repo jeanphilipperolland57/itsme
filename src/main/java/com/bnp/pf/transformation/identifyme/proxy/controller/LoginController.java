@@ -51,7 +51,7 @@ public class LoginController {
     }
 
     @GetMapping("/login/oauth2/code/itsme")
-    public String itsmeLoginCallback(@AuthenticationPrincipal OAuth2User user) {
+    public String itsmeLoginCallback(Model model, @AuthenticationPrincipal OAuth2User user) {
         userService.saveUserData(user);
         log.info("User saved successfully {}", user.getName());
 
